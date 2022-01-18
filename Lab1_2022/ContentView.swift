@@ -8,14 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var description = ""
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            VStack {
+                Image(systemName: "ladybug")
+               
+            }
+            TextEditor(text: $description)
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Group {
+            ContentView()
+      
+        }
     }
 }
