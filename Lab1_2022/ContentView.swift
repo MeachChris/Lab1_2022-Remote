@@ -12,7 +12,8 @@ struct ContentView: View {
     var body: some View {
         VStack {
             VStack {
-                Image(systemName: "ladybug")
+                Image(systemName: "ant.circle.fill")
+                    .resizable()
                
             }
             TextEditor(text: $description)
