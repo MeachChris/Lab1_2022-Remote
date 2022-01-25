@@ -10,6 +10,8 @@ import SwiftUI
 struct DetailView: View {
     @State private var description = ""
     @State private var favourite = false
+    var maxCharacters : UInt
+    
     var colour : Color
     var body: some View {
         VStack {
@@ -22,11 +24,11 @@ struct DetailView: View {
                 Text("Favourite")
             }
             TextEditor(text: Binding(get: {description}, set: { newValue in
-                if newValue.count <= 150 {
+                if newValue.count <= maxCharacters {
                     description = newValue
                 }
             }))
-            Text(String(description.count))
+            Text("\(description.count)/\(maxCharacters)")
         }
         .padding(/*@START_MENU_TOKEN@*/.all, 15.0/*@END_MENU_TOKEN@*/)
     }

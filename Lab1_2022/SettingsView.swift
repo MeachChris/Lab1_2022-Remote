@@ -7,16 +7,42 @@
 
 import SwiftUI
 
+
+
 struct SettingsView: View {
     @Binding var colour: Color
+    
+    @Binding var maxCharacters: UInt
+    
     var body: some View {
-        ColorPicker("Background", selection: $colour).padding()
+        VStack {
+            VStack {
+                
+                ColorPicker("Background", selection: $colour).padding()
+               
+                
+                Stepper(onIncrement: { maxCharacters += 10 }, onDecrement: { maxCharacters -= 10}) {
+                    Text("\(maxCharacters)")
+               
+            }
+            
+            
+            }
+         
+        }
+        
     }
+       
 }
+    
+
 
 struct SettingsView_Previews: PreviewProvider {
     @State static var colour = Color.yellow
+    @State static var maxCharacters : UInt = 150
     static var previews: some View {
-        SettingsView(colour: $colour)
+        SettingsView(colour: $colour, maxCharacters: $maxCharacters)
+        
+        
     }
 }

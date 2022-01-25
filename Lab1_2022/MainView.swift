@@ -11,14 +11,16 @@ import SwiftUI
 struct MainView: View {
     @State private var showSettings = false
     @State var colour = Color.yellow
+    @State var maxCharacters: UInt = 150
+    
     var body: some View {
         NavigationView() {
             VStack {
                 if showSettings {
-                    SettingsView(colour: $colour)
+                    SettingsView(colour: $colour, maxCharacters: $maxCharacters)
                 }
                 else {
-                    DetailView(colour: colour)
+                    DetailView(maxCharacters: maxCharacters, colour: colour)
                 }
             }
             .navigationBarItems(trailing: Button(action: { showSettings.toggle()},
