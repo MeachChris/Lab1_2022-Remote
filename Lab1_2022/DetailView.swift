@@ -10,19 +10,23 @@ import SwiftUI
 struct DetailView: View {
     @State private var description = ""
     @State private var favourite = false
+    var colour : Color
     var body: some View {
         VStack {
             
                 Image(systemName: "ant.circle.fill")
                     .resizable()
-                    .background(favourite ? Color.yellow : Color.white)
-       
-               
+                    .background(favourite ? colour : Color.white)
             
             Toggle(isOn: $favourite) {
                 Text("Favourite")
             }
-            TextEditor(text: $description)
+            TextEditor(text: Binding(get: {description}, set: { newValue in
+                if newValue.count <= 150 {
+                    description = newValue
+                }
+            }))
+            Text(String(description.count))
         }
         .padding(/*@START_MENU_TOKEN@*/.all, 15.0/*@END_MENU_TOKEN@*/)
     }
