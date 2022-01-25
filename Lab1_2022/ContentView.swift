@@ -8,16 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var description = ""
+    @State private var description = ""
+    @State private var favourite = false
     var body: some View {
         VStack {
-            VStack {
+            
                 Image(systemName: "ant.circle.fill")
                     .resizable()
+                    .background(favourite ? Color.yellow : Color.white)
+       
                
+            
+            Toggle(isOn: $favourite) {
+                Text("Favourite")
             }
             TextEditor(text: $description)
         }
+        .padding(/*@START_MENU_TOKEN@*/.all, 15.0/*@END_MENU_TOKEN@*/)
     }
 }
 
