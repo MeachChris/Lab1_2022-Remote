@@ -21,7 +21,13 @@ struct SettingsView: View {
                 ColorPicker("Background", selection: $colour).padding()
                
                 
-                Stepper(onIncrement: { maxCharacters += 10 }, onDecrement: { maxCharacters -= 10}) {
+                Stepper(onIncrement:
+                            { if (maxCharacters < 300) {
+                                maxCharacters += 10 }
+                    
+                }, onDecrement:
+                            { if (maxCharacters > 10) {
+                                maxCharacters -= 10}}) {
                     Text("\(maxCharacters)")
                
             }
