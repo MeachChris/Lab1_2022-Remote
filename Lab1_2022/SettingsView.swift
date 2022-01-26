@@ -10,31 +10,45 @@ import SwiftUI
 
 
 struct SettingsView: View {
+    let incremental : UInt = 10
+    let maxch  : UInt = 300
+    let minch  : UInt = 10
     @Binding var colour: Color
     
     @Binding var maxCharacters: UInt
     
     var body: some View {
         VStack {
-            VStack {
+            
                 
                 ColorPicker("Background", selection: $colour).padding()
                
                 
                 Stepper(onIncrement:
-                            { if (maxCharacters < 300) {
-                                maxCharacters += 10 }
+                            { if (maxCharacters < maxch) {
+                                maxCharacters += incremental }
                     
                 }, onDecrement:
-                            { if (maxCharacters > 10) {
-                                maxCharacters -= 10}}) {
+                            { if (maxCharacters > minch) {
+                                maxCharacters -= incremental}}) {
                     Text("\(maxCharacters)")
                
             }
-            
-            
-            }
-         
+                
+                Button("Save", action:{
+                        UserDefaults.standard.set(maxCharacters, forKey: "maxCharacters")
+                        UserDefaults.standard.set(color2array(colour: colour), forKey:
+                        "colour")
+                })
+                
+                Button("Load", action:{
+                    maxCharacters = UserDefaults.standard.object(forKey: "maxCharacters") as? UInt ??
+                    150
+                    colour = array2color(array: UserDefaults.standard.object(forKey:
+                    "colour") as? [CGFloat] ?? color2array(colour:
+                    Color.yellow))
+                })
+
         }
         
     }
@@ -51,4 +65,18 @@ struct SettingsView_Previews: PreviewProvider {
         
         
     }
+      
+}
+func color2array(colour: Color) -> [CGFloat] {
+    let uiColor = UIColor(colour)
+    var red: CGFloat = 0.0
+    var green: CGFloat = 0.0
+    var blue: CGFloat = 0.0
+    var alpha: CGFloat = 0.0
+    uiColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+    return [red, green, blue, alpha]
+}
+func array2color(array: [CGFloat]) -> Color {
+    return Color(Color.RGBColorSpace.sRGB, red: array[0], green: array[1], blue: array[2], opacity: array[3])
+    
 }
