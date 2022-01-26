@@ -28,13 +28,14 @@ struct SettingsView: View {
                 ).padding()
                 Stepper(onIncrement:
                             { if (maxCharacters < maxch) {
-                                UserDefaults.standard.set(maxCharacters, forKey: "maxCharacters")
-                                maxCharacters += incremental }
+                                maxCharacters += incremental
+                                UserDefaults.standard.set(maxCharacters, forKey: "maxCharacters")                            }
                     
                 }, onDecrement:
                             { if (maxCharacters > minch) {
-                                UserDefaults.standard.set(maxCharacters, forKey: "maxCharacters")
-                                maxCharacters -= incremental}}) {
+                                
+                                maxCharacters -= incremental
+                                UserDefaults.standard.set(maxCharacters, forKey: "maxCharacters")                            }}) {
                     Text("\(maxCharacters)")
             }
         }
