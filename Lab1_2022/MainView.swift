@@ -10,8 +10,10 @@ import SwiftUI
 
 struct MainView: View {
     @State private var showSettings = false
-    @State var colour = Color.yellow
-    @State var maxCharacters: UInt = 150
+    @State var colour = array2color(array: UserDefaults.standard.object(forKey: "colour") as? [CGFloat] ?? color2array(colour: Color.yellow))
+    @State var maxCharacters: UInt = UserDefaults.standard.object(forKey: "maxCharacters") as? UInt ??
+    150
+    
     
     var body: some View {
         NavigationView() {
