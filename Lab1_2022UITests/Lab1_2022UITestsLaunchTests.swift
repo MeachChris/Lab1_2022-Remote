@@ -4,7 +4,7 @@
 //
 //  Created by ICS 224 on 2022-01-18.
 //
-
+/*
 import XCTest
 
 class Lab1_2022UITestsLaunchTests: XCTestCase {
@@ -30,3 +30,5 @@ class Lab1_2022UITestsLaunchTests: XCTestCase {
         add(attachment)
     }
 }
+*/
+

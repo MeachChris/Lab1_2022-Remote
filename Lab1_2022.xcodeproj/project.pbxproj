@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F31581A427A9D5D700AC9AF9 /* Lab1_2022App.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39279D02797612C00B81D12 /* Lab1_2022App.swift */; };
+		F31581A527A9D5D800AC9AF9 /* Lab1_2022App.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39279D02797612C00B81D12 /* Lab1_2022App.swift */; };
+		F31581A627A9D5E300AC9AF9 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39279D22797612C00B81D12 /* DetailView.swift */; };
+		F31581A727A9D5E400AC9AF9 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39279D22797612C00B81D12 /* DetailView.swift */; };
+		F31581AA27A9DB2500AC9AF9 /* Lab1_2022UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39279EB2797612E00B81D12 /* Lab1_2022UITests.swift */; };
 		F39279D12797612C00B81D12 /* Lab1_2022App.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39279D02797612C00B81D12 /* Lab1_2022App.swift */; };
 		F39279D32797612C00B81D12 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39279D22797612C00B81D12 /* DetailView.swift */; };
 		F39279D52797612E00B81D12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F39279D42797612E00B81D12 /* Assets.xcassets */; };
 		F39279D82797612E00B81D12 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F39279D72797612E00B81D12 /* Preview Assets.xcassets */; };
 		F39279E22797612E00B81D12 /* Lab1_2022Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39279E12797612E00B81D12 /* Lab1_2022Tests.swift */; };
-		F39279EC2797612E00B81D12 /* Lab1_2022UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39279EB2797612E00B81D12 /* Lab1_2022UITests.swift */; };
 		F39279EE2797612E00B81D12 /* Lab1_2022UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39279ED2797612E00B81D12 /* Lab1_2022UITestsLaunchTests.swift */; };
 		F3F68E8927A09AF300C8B84B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F68E8827A09AF300C8B84B /* MainView.swift */; };
 		F3F68E8A27A09AF300C8B84B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F68E8827A09AF300C8B84B /* MainView.swift */; };
@@ -281,6 +285,8 @@
 				F3F68E8E27A09B8900C8B84B /* SettingsView.swift in Sources */,
 				F39279E22797612E00B81D12 /* Lab1_2022Tests.swift in Sources */,
 				F3F68E8A27A09AF300C8B84B /* MainView.swift in Sources */,
+				F31581A627A9D5E300AC9AF9 /* DetailView.swift in Sources */,
+				F31581A427A9D5D700AC9AF9 /* Lab1_2022App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,9 +295,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F39279EE2797612E00B81D12 /* Lab1_2022UITestsLaunchTests.swift in Sources */,
+				F31581A727A9D5E400AC9AF9 /* DetailView.swift in Sources */,
 				F3F68E8F27A09B8900C8B84B /* SettingsView.swift in Sources */,
 				F3F68E8B27A09AF300C8B84B /* MainView.swift in Sources */,
-				F39279EC2797612E00B81D12 /* Lab1_2022UITests.swift in Sources */,
+				F31581A527A9D5D800AC9AF9 /* Lab1_2022App.swift in Sources */,
+				F31581AA27A9DB2500AC9AF9 /* Lab1_2022UITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

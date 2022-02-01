@@ -19,17 +19,21 @@ struct DetailView: View {
                 Image(systemName: "ant.circle.fill")
                     .resizable()
                     .background(favourite ? colour : Color.white)
+                        .accessibilityIdentifier("DetailImage")
             
             Toggle(isOn: $favourite) {
                 Text("Favourite")
             }
+            .accessibilityIdentifier("FavouriteToggle")
+            
             TextEditor(text: Binding(get: {description}, set: { newValue in
                 if newValue.count <= maxCharacters {
                     description = newValue
                 }
             }))
+                .accessibilityIdentifier("DetailTextEditor")
             Text("\(description.count)/\(maxCharacters)")
-        }
+            .accessibilityIdentifier("DetailText")        }
         .padding(/*@START_MENU_TOKEN@*/.all, 15.0/*@END_MENU_TOKEN@*/)
     }
 }

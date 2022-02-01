@@ -26,18 +26,22 @@ struct SettingsView: View {
             })
                      
                 ).padding()
+                .accessibilityIdentifier("BackgroundColorPicker")
+            
                 Stepper(onIncrement:
                             { if (maxCharacters < maxch) {
                                 maxCharacters += incremental
                                 UserDefaults.standard.set(maxCharacters, forKey: "maxCharacters")                            }
-                    
+                        
                 }, onDecrement:
                             { if (maxCharacters > minch) {
                                 
                                 maxCharacters -= incremental
-                                UserDefaults.standard.set(maxCharacters, forKey: "maxCharacters")                            }}) {
-                    Text("\(maxCharacters)")
-            }
+                                UserDefaults.standard.set(maxCharacters, forKey: "maxCharacters")                            }}
+                           
+                
+                ){Text("\(maxCharacters)")}.accessibilityIdentifier("MaxCountStepper")
+            
         }
     }
 }
@@ -53,13 +57,7 @@ struct SettingsView_Previews: PreviewProvider {
     }
       
 }
-/*
-func save() {
-    
-    
-    
-}
-*/
+
 
 func color2array(colour: Color) -> [CGFloat] {
     let uiColor = UIColor(colour)

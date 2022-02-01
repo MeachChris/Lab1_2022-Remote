@@ -22,21 +22,93 @@ class Lab1_2022UITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+    func testCharCount() throws {
         let app = XCUIApplication()
         app.launch()
-
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let detailText = app.staticTexts["DetailText"]
+        XCTAssertEqual(detailText.label, "0/150")
+        
+        let detailTextEditor = app.textViews["DetailTextEditor"]
+        detailTextEditor.tap()
+        
+        let keyH = app.keys["H"]
+        keyH.tap()
+        XCTAssertTrue(detailText.waitForExistence(timeout : 5))
+        XCTAssertEqual(detailText.label, "1/150")
+        
+        let keyi = app.keys["i"]
+        keyi.tap()
+        
+        XCTAssertEqual(detailText.label, "2/150")
+        
+        
     }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
+    
+    func testTwo() throws {
+        let app = XCUIApplication()
+        app.launch()
+        let detailTextEditor = app.textViews["DetailTextEditor"]
+        let detailText = app.staticTexts["DetailText"]
+        detailTextEditor.tap()
+        var keyH = app.keys["H"]
+        var i = 153
+        while (i > 0) {
+            
+            keyH.tap()
+            keyH = app.keys["h"]
+            i = i - 1
         }
+        
+        XCTAssertEqual(detailText.label, "150/150")
+    }
+    
+    func testThird() throws {
+        let app = XCUIApplication()
+        app.launch()
+        let navigationButton = app.buttons["NavigationButton"]
+        
+        
+        var i = 30
+        navigationButton.tap()
+        while (i > 0) {
+            app.steppers["MaxCountStepper"].buttons["Decrement"].tap()
+            i = i - 1
+        }
+        navigationButton.tap()
+        let detailText = app.staticTexts["DetailText"]
+        XCTAssertEqual(detailText.label, "0/10")
+        
+        app.terminate()
+        app.launch()
+        
+        XCTAssertEqual(detailText.label, "0/10")
+        var keyH = app.keys["H"]
+        let detailTextEditor = app.textViews["DetailTextEditor"]
+        detailTextEditor.tap()
+        var j = 12
+        while (j > 0) {
+            keyH.tap()
+            keyH = app.keys["h"]
+            j = j - 1
+        }
+        
+        XCTAssertEqual(detailText.label, "10/10")
+        i = 31
+        navigationButton.tap()
+        while (i > 0) {
+            app.steppers["MaxCountStepper"].buttons["Increment"].tap()
+            i = i - 1
+        }
+        navigationButton.tap()
+        XCTAssertEqual(detailText.label, "0/300")
+        
+        i = 15
+        navigationButton.tap()
+        while (i != 0) {
+            app.steppers["MaxCountStepper"].buttons["Decrement"].tap()
+            i = i - 1
+        }
+        
     }
 }
