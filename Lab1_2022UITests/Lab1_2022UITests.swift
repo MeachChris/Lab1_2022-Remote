@@ -45,7 +45,7 @@ class Lab1_2022UITests: XCTestCase {
         
     }
     
-    func testTwo() throws {
+    func testMaxChar() throws {
         let app = XCUIApplication()
         app.launch()
         let detailTextEditor = app.textViews["DetailTextEditor"]
@@ -63,7 +63,7 @@ class Lab1_2022UITests: XCTestCase {
         XCTAssertEqual(detailText.label, "150/150")
     }
     
-    func testThird() throws {
+    func testSaveFunctionMaxChar() throws {
         let app = XCUIApplication()
         app.launch()
         let navigationButton = app.buttons["NavigationButton"]
