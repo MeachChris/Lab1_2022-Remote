@@ -33,7 +33,7 @@ struct MainView: View {
                     List($inventoryItems.entries) {
                         $inventoryItem in
                             NavigationLink(
-                                destination: DetailView(colour:colour, maxCharacters:maxCharacters, inventoryItem:inventoryItem)
+                                destination: DetailView(colour:colour, maxCharacters:maxCharacters, inventoryItem:$inventoryItem)
                         ) {
                             RowView(inventoryItem: inventoryItem)
                         }

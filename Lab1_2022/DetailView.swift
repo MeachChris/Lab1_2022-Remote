@@ -15,40 +15,40 @@ struct DetailView: View {
     
     var colour : Color
     var maxCharacters : UInt
-    var inventoryItem : InventoryItem
+   // var inventoryItem : InventoryItem
+    @Binding var inventoryItem : InventoryItem
     
     var body: some View {
         VStack {
             
             Image(systemName: inventoryItem.image)
                     .resizable()
-                    .background(favourite ? colour : Color.white)
+                    .background(inventoryItem.favourite ? colour : Color.white)
                         .accessibilityIdentifier("DetailImage")
             
-            Toggle(isOn: $favourite) {
+            Toggle(isOn: $inventoryItem.favourite) {
                 Text("Favourite")
             }
             .accessibilityIdentifier("FavouriteToggle")
             
-            TextEditor(text: Binding(get: {description}, set: { newValue in
+            TextEditor(text: Binding(get: {inventoryItem.description}, set: { newValue in
                 if newValue.count <= maxCharacters {
-                    description = newValue
+                    inventoryItem.description = newValue
                 }
             }))
                 .accessibilityIdentifier("DetailTextEditor")
-            Text("\(description.count)/\(maxCharacters)")
+            Text("\(inventoryItem.description.count)/\(maxCharacters)")
             .accessibilityIdentifier("DetailText")        }
         .padding(/*@START_MENU_TOKEN@*/.all, 15.0/*@END_MENU_TOKEN@*/)
     }
 }
 
 struct DetailView_Previews: PreviewProvider {
-    static var inventoryItems = InventoryItems()
     static var previews: some View {
-        
-            DetailView(colour: Color.yellow, maxCharacters: 150, inventoryItem: inventoryItems.entries[0])
+        Group {
+            MainView()
+        }
     }
-       
 }
     
 

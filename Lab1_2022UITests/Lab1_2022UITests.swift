@@ -21,13 +21,16 @@ class Lab1_2022UITests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
+//let backButton = app.buttons["Back"]
+    //backButton.tap()
     func testCharCount() throws {
+        
         let app = XCUIApplication()
         app.launch()
+        app.tables.cells.firstMatch.tap()
         
         let detailText = app.staticTexts["DetailText"]
-        XCTAssertEqual(detailText.label, "0/150")
+        XCTAssertEqual(detailText.label, "4/150")
         
         let detailTextEditor = app.textViews["DetailTextEditor"]
         detailTextEditor.tap()
@@ -35,12 +38,12 @@ class Lab1_2022UITests: XCTestCase {
         let keyH = app.keys["H"]
         keyH.tap()
         XCTAssertTrue(detailText.waitForExistence(timeout : 5))
-        XCTAssertEqual(detailText.label, "1/150")
+        XCTAssertEqual(detailText.label, "5/150")
         
         let keyi = app.keys["i"]
         keyi.tap()
         
-        XCTAssertEqual(detailText.label, "2/150")
+        XCTAssertEqual(detailText.label, "6/150")
         
         
     }
@@ -48,6 +51,7 @@ class Lab1_2022UITests: XCTestCase {
     func testMaxChar() throws {
         let app = XCUIApplication()
         app.launch()
+        app.tables.cells.firstMatch.tap()
         let detailTextEditor = app.textViews["DetailTextEditor"]
         let detailText = app.staticTexts["DetailText"]
         detailTextEditor.tap()
@@ -66,23 +70,29 @@ class Lab1_2022UITests: XCTestCase {
     func testSaveFunctionMaxChar() throws {
         let app = XCUIApplication()
         app.launch()
+        let backButton = app.buttons["Back"]
+        app.tables.cells.firstMatch.tap()
         let navigationButton = app.buttons["NavigationButton"]
         
         
         var i = 30
+        backButton.tap()
         navigationButton.tap()
         while (i > 0) {
             app.steppers["MaxCountStepper"].buttons["Decrement"].tap()
             i = i - 1
         }
+        
         navigationButton.tap()
+        app.tables.cells.firstMatch.tap()
         let detailText = app.staticTexts["DetailText"]
-        XCTAssertEqual(detailText.label, "0/10")
+        XCTAssertEqual(detailText.label, "4/10")
         
         app.terminate()
         app.launch()
         
-        XCTAssertEqual(detailText.label, "0/10")
+        app.tables.cells.firstMatch.tap()
+        XCTAssertEqual(detailText.label, "4/10")
         var keyH = app.keys["H"]
         let detailTextEditor = app.textViews["DetailTextEditor"]
         detailTextEditor.tap()
@@ -95,15 +105,20 @@ class Lab1_2022UITests: XCTestCase {
         
         XCTAssertEqual(detailText.label, "10/10")
         i = 31
+        
+        backButton.tap()
         navigationButton.tap()
         while (i > 0) {
             app.steppers["MaxCountStepper"].buttons["Increment"].tap()
             i = i - 1
         }
         navigationButton.tap()
-        XCTAssertEqual(detailText.label, "0/300")
+        
+        app.tables.cells.firstMatch.tap()
+        XCTAssertEqual(detailText.label, "10/300")
         
         i = 15
+        backButton.tap()
         navigationButton.tap()
         while (i != 0) {
             app.steppers["MaxCountStepper"].buttons["Decrement"].tap()
@@ -111,4 +126,28 @@ class Lab1_2022UITests: XCTestCase {
         }
         
     }
+    
+    func testToggle() throws {
+        
+        let app = XCUIApplication()
+        app.launch()
+        let backButton = app.buttons["Back"]
+        app.tables.cells.firstMatch.tap()
+        let favouriteToggle = app.switches["FavouriteToggle"]
+        XCTAssertEqual(favouriteToggle.value as? String, "0") // for disabled use 0 instead of 1
+        favouriteToggle.tap()
+        XCTAssertEqual(favouriteToggle.value as? String, "1")
+        backButton.tap()
+        app.tables.cells.firstMatch.tap()
+        XCTAssertEqual(favouriteToggle.value as? String, "1")
+        backButton.tap()
+        let secondEntry = app.tables.cells.element(boundBy: 1)
+        secondEntry.tap()
+        XCTAssertEqual(favouriteToggle.value as? String, "0")
+        backButton.tap()
+        app.tables.cells.firstMatch.tap()
+        XCTAssertEqual(favouriteToggle.value as? String, "1")
+        favouriteToggle.tap()
+        XCTAssertEqual(favouriteToggle.value as? String, "0")    }
+    
 }
