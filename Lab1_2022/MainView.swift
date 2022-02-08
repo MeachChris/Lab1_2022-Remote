@@ -13,23 +13,30 @@ struct MainView: View {
     @State var colour = array2color(array: UserDefaults.standard.object(forKey: "colour") as? [CGFloat] ?? color2array(colour: Color.yellow))
     @State var maxCharacters: UInt = UserDefaults.standard.object(forKey: "maxCharacters") as? UInt ??
     150
+   
+    @EnvironmentObject var inventoryItems : InventoryItems
     @Environment(\.horizontalSizeClass) var sizeClass
+    
     
     
     var body: some View {
         NavigationView() {
             VStack {
                 if showSettings {
+                    
                     SettingsView(colour: $colour, maxCharacters: $maxCharacters)
                 }
+                
                 else {
-                    //DetailView(maxCharacters: maxCharacters, colour: colour)
-                    if sizeClass == .regular {
-                        DetailView(maxCharacters: maxCharacters, colour: colour)
-                        .frame(width: 320, height: 457, alignment: .center) }
-                        else if sizeClass == .compact {
-                            DetailView(maxCharacters: maxCharacters, colour: colour)
-                        
+                    
+                    
+                    List($inventoryItems.entries) {
+                        $inventoryItem in
+                            NavigationLink(
+                                destination: DetailView(colour:colour, maxCharacters:maxCharacters, inventoryItem:inventoryItem)
+                        ) {
+                            RowView(inventoryItem: inventoryItem)
+                        }
                     }
                 }
             }
@@ -49,7 +56,7 @@ struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(["iPad (9th generation)", "iPod touch (7th generation)"], id: \.self) { deviceName in
             MainView()
-                .previewDevice(PreviewDevice(rawValue: deviceName))
+                .previewDevice(PreviewDevice(rawValue: deviceName)).environmentObject(InventoryItems())
         }
     }
 }

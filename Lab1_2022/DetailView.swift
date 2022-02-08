@@ -10,13 +10,17 @@ import SwiftUI
 struct DetailView: View {
     @State private var description = ""
     @State private var favourite = false
-    var maxCharacters : UInt
+    
+    
     
     var colour : Color
+    var maxCharacters : UInt
+    var inventoryItem : InventoryItem
+    
     var body: some View {
         VStack {
             
-                Image(systemName: "ant.circle.fill")
+            Image(systemName: inventoryItem.image)
                     .resizable()
                     .background(favourite ? colour : Color.white)
                         .accessibilityIdentifier("DetailImage")
@@ -39,10 +43,12 @@ struct DetailView: View {
 }
 
 struct DetailView_Previews: PreviewProvider {
+    static var inventoryItems = InventoryItems()
     static var previews: some View {
-        Group {
-            MainView()
-      
-        }
+        
+            DetailView(colour: Color.yellow, maxCharacters: 150, inventoryItem: inventoryItems.entries[0])
     }
+       
 }
+    
+
