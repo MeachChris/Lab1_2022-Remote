@@ -70,7 +70,7 @@ class Lab1_2022UITests: XCTestCase {
     func testSaveFunctionMaxChar() throws {
         let app = XCUIApplication()
         app.launch()
-        let backButton = app.buttons["Back"]
+        let backButton = app.buttons["Inventory"]
         app.tables.cells.firstMatch.tap()
         let navigationButton = app.buttons["NavigationButton"]
         
@@ -131,7 +131,7 @@ class Lab1_2022UITests: XCTestCase {
         
         let app = XCUIApplication()
         app.launch()
-        let backButton = app.buttons["Back"]
+        let backButton = app.buttons["Inventory"]
         app.tables.cells.firstMatch.tap()
         let favouriteToggle = app.switches["FavouriteToggle"]
         XCTAssertEqual(favouriteToggle.value as? String, "0") // for disabled use 0 instead of 1
@@ -149,5 +149,15 @@ class Lab1_2022UITests: XCTestCase {
         XCTAssertEqual(favouriteToggle.value as? String, "1")
         favouriteToggle.tap()
         XCTAssertEqual(favouriteToggle.value as? String, "0")    }
+    
+    func testAddition() throws {
+        let app = XCUIApplication()
+        app.launch()
+        let addButton = app.buttons["PlusButton"]
+        addButton.tap()
+        app.tables.cells.firstMatch.tap()
+        let backButton = app.buttons["Inventory"]
+        backButton.tap()
+    }
     
 }

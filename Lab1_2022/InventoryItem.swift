@@ -7,7 +7,7 @@ struct InventoryItem: Identifiable {
     var description: String
     var favourite : Bool
      
-    init(image: String, description: String) {
+    init(image: String, description: String, favourite: Bool) {
         self.image = image
         self.description = description
         self.favourite = false
