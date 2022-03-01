@@ -28,7 +28,7 @@ struct DetailView: View {
             
             Image(uiImage: inventoryItem.image)
                     .resizable()
-                    .background(inventoryItem.favourite ? colour : Color.white)
+                    .border(inventoryItem.favourite ? colour : Color.white, width: 10)
                         .accessibilityIdentifier("DetailImage").scaledToFit()
                         
                                 .gesture(TapGesture(count: 1).onEnded({ value in
