@@ -12,6 +12,9 @@
 		F31581A627A9D5E300AC9AF9 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39279D22797612C00B81D12 /* DetailView.swift */; };
 		F31581A727A9D5E400AC9AF9 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39279D22797612C00B81D12 /* DetailView.swift */; };
 		F31581AA27A9DB2500AC9AF9 /* Lab1_2022UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39279EB2797612E00B81D12 /* Lab1_2022UITests.swift */; };
+		F354425B27CEBFBF00D697E2 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354425A27CEBFBF00D697E2 /* ImageView.swift */; };
+		F354425C27CEBFBF00D697E2 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354425A27CEBFBF00D697E2 /* ImageView.swift */; };
+		F354425D27CEBFBF00D697E2 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354425A27CEBFBF00D697E2 /* ImageView.swift */; };
 		F39279D12797612C00B81D12 /* Lab1_2022App.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39279D02797612C00B81D12 /* Lab1_2022App.swift */; };
 		F39279D32797612C00B81D12 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39279D22797612C00B81D12 /* DetailView.swift */; };
 		F39279D52797612E00B81D12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F39279D42797612E00B81D12 /* Assets.xcassets */; };
@@ -53,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F354425A27CEBFBF00D697E2 /* ImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		F39279CD2797612C00B81D12 /* Lab1_2022.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lab1_2022.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F39279D02797612C00B81D12 /* Lab1_2022App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lab1_2022App.swift; sourceTree = "<group>"; };
 		F39279D22797612C00B81D12 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
@@ -119,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				F39279D02797612C00B81D12 /* Lab1_2022App.swift */,
+				F354425A27CEBFBF00D697E2 /* ImageView.swift */,
 				F3A32F0327B30DF6006FABAD /* InventoryItems.swift */,
 				F3A32EFF27B30D5E006FABAD /* InventoryItem.swift */,
 				F39279D22797612C00B81D12 /* DetailView.swift */,
@@ -286,6 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F354425B27CEBFBF00D697E2 /* ImageView.swift in Sources */,
 				F3A32F0027B30D5E006FABAD /* InventoryItem.swift in Sources */,
 				F3A32F0427B30DF6006FABAD /* InventoryItems.swift in Sources */,
 				F3A32F0827B30E71006FABAD /* RowView.swift in Sources */,
@@ -306,6 +312,7 @@
 				F3A32F0927B30E71006FABAD /* RowView.swift in Sources */,
 				F3F68E8A27A09AF300C8B84B /* MainView.swift in Sources */,
 				F3A32F0127B30D5E006FABAD /* InventoryItem.swift in Sources */,
+				F354425C27CEBFBF00D697E2 /* ImageView.swift in Sources */,
 				F31581A627A9D5E300AC9AF9 /* DetailView.swift in Sources */,
 				F31581A427A9D5D700AC9AF9 /* Lab1_2022App.swift in Sources */,
 			);
@@ -315,6 +322,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F354425D27CEBFBF00D697E2 /* ImageView.swift in Sources */,
 				F39279EE2797612E00B81D12 /* Lab1_2022UITestsLaunchTests.swift in Sources */,
 				F31581A727A9D5E400AC9AF9 /* DetailView.swift in Sources */,
 				F3F68E8F27A09B8900C8B84B /* SettingsView.swift in Sources */,
@@ -470,6 +478,8 @@
 				DEVELOPMENT_TEAM = SXU5PKL45A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera Access is needed to add photos of inventory items";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Photo library access is needed to add photos of inventory items";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -499,6 +509,8 @@
 				DEVELOPMENT_TEAM = SXU5PKL45A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera Access is needed to add photos of inventory items";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Photo library access is needed to add photos of inventory items";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

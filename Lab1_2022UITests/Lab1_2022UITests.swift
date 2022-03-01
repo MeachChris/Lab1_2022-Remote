@@ -27,10 +27,13 @@ class Lab1_2022UITests: XCTestCase {
         
         let app = XCUIApplication()
         app.launch()
+        let addButton = app.buttons["PlusButton"]
+        addButton.tap()
+        
         app.tables.cells.firstMatch.tap()
         
         let detailText = app.staticTexts["DetailText"]
-        XCTAssertEqual(detailText.label, "4/150")
+        XCTAssertEqual(detailText.label, "7/150")
         
         let detailTextEditor = app.textViews["DetailTextEditor"]
         detailTextEditor.tap()
@@ -38,12 +41,12 @@ class Lab1_2022UITests: XCTestCase {
         let keyH = app.keys["H"]
         keyH.tap()
         XCTAssertTrue(detailText.waitForExistence(timeout : 5))
-        XCTAssertEqual(detailText.label, "5/150")
+        XCTAssertEqual(detailText.label, "8/150")
         
         let keyi = app.keys["i"]
         keyi.tap()
         
-        XCTAssertEqual(detailText.label, "6/150")
+        XCTAssertEqual(detailText.label, "9/150")
         
         
     }
@@ -51,11 +54,18 @@ class Lab1_2022UITests: XCTestCase {
     func testMaxChar() throws {
         let app = XCUIApplication()
         app.launch()
+        let addButton = app.buttons["PlusButton"]
+        
+        addButton.tap()
         app.tables.cells.firstMatch.tap()
+        let backButton = app.buttons["Inventory"]
         let detailTextEditor = app.textViews["DetailTextEditor"]
         let detailText = app.staticTexts["DetailText"]
+        XCTAssertTrue(detailTextEditor.waitForExistence(timeout : 5))
         detailTextEditor.tap()
+        
         var keyH = app.keys["H"]
+        
         var i = 153
         while (i > 0) {
             
@@ -65,34 +75,51 @@ class Lab1_2022UITests: XCTestCase {
         }
         
         XCTAssertEqual(detailText.label, "150/150")
+        backButton.tap()
+        
+        app.tables.cells.firstMatch.swipeLeft(velocity: .default)
+        let deleteButton = app.buttons["Delete"]
+        deleteButton.tap()
+        XCTAssertEqual(app.tables.cells.count, 0)
+        
+        
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     func testSaveFunctionMaxChar() throws {
         let app = XCUIApplication()
         app.launch()
+        let addButton = app.buttons["PlusButton"]
+        addButton.tap()
         let backButton = app.buttons["Inventory"]
         app.tables.cells.firstMatch.tap()
         let navigationButton = app.buttons["NavigationButton"]
-        
-        
         var i = 30
+        //backButton.tap()
+        XCTAssertTrue(app.buttons["Inventory"].waitForExistence(timeout : 1))
         backButton.tap()
         navigationButton.tap()
         while (i > 0) {
             app.steppers["MaxCountStepper"].buttons["Decrement"].tap()
             i = i - 1
         }
-        
         navigationButton.tap()
         app.tables.cells.firstMatch.tap()
         let detailText = app.staticTexts["DetailText"]
-        XCTAssertEqual(detailText.label, "4/10")
-        
+        XCTAssertEqual(detailText.label, "7/10")
         app.terminate()
         app.launch()
-        
+        addButton.tap()
         app.tables.cells.firstMatch.tap()
-        XCTAssertEqual(detailText.label, "4/10")
+        XCTAssertEqual(detailText.label, "7/10")
         var keyH = app.keys["H"]
         let detailTextEditor = app.textViews["DetailTextEditor"]
         detailTextEditor.tap()
@@ -102,10 +129,8 @@ class Lab1_2022UITests: XCTestCase {
             keyH = app.keys["h"]
             j = j - 1
         }
-        
         XCTAssertEqual(detailText.label, "10/10")
         i = 31
-        
         backButton.tap()
         navigationButton.tap()
         while (i > 0) {
@@ -113,10 +138,8 @@ class Lab1_2022UITests: XCTestCase {
             i = i - 1
         }
         navigationButton.tap()
-        
         app.tables.cells.firstMatch.tap()
         XCTAssertEqual(detailText.label, "10/300")
-        
         i = 15
         backButton.tap()
         navigationButton.tap()
@@ -124,13 +147,27 @@ class Lab1_2022UITests: XCTestCase {
             app.steppers["MaxCountStepper"].buttons["Decrement"].tap()
             i = i - 1
         }
-        
+        navigationButton.tap()
+        app.tables.cells.firstMatch.swipeLeft(velocity: .default)
+        let deleteButton = app.buttons["Delete"]
+        deleteButton.tap()
+        XCTAssertEqual(app.tables.cells.count, 0)
     }
+    
+    
+    
+    
+    
+    
+    
     
     func testToggle() throws {
         
         let app = XCUIApplication()
         app.launch()
+        let addButton = app.buttons["PlusButton"]
+        addButton.tap()
+        addButton.tap()
         let backButton = app.buttons["Inventory"]
         app.tables.cells.firstMatch.tap()
         let favouriteToggle = app.switches["FavouriteToggle"]
@@ -141,6 +178,11 @@ class Lab1_2022UITests: XCTestCase {
         app.tables.cells.firstMatch.tap()
         XCTAssertEqual(favouriteToggle.value as? String, "1")
         backButton.tap()
+        XCUIDevice.shared.press(.home)
+        sleep(1)
+        app.terminate()
+        app.launch()
+        
         let secondEntry = app.tables.cells.element(boundBy: 1)
         secondEntry.tap()
         XCTAssertEqual(favouriteToggle.value as? String, "0")
@@ -148,16 +190,46 @@ class Lab1_2022UITests: XCTestCase {
         app.tables.cells.firstMatch.tap()
         XCTAssertEqual(favouriteToggle.value as? String, "1")
         favouriteToggle.tap()
-        XCTAssertEqual(favouriteToggle.value as? String, "0")    }
+        XCTAssertEqual(favouriteToggle.value as? String, "0")
+        
+        backButton.tap()
+        app.tables.cells.firstMatch.swipeLeft(velocity: .default)
+        let deleteButton = app.buttons["Delete"]
+        deleteButton.tap()
+        app.tables.cells.firstMatch.swipeLeft(velocity: .default)
+        deleteButton.tap()
+        
+        XCUIDevice.shared.press(.home)
+        sleep(1)
+        app.launch()
+    }
     
-    func testAddition() throws {
+    
+    
+    
+    
+    
+    
+    
+    func testAdditionDeletion() throws {
+        //addition
         let app = XCUIApplication()
         app.launch()
+        XCTAssertEqual(app.tables.cells.count, 0)
         let addButton = app.buttons["PlusButton"]
         addButton.tap()
         app.tables.cells.firstMatch.tap()
         let backButton = app.buttons["Inventory"]
+        //backButton.tap()
+        XCTAssertTrue(app.buttons["Inventory"].waitForExistence(timeout : 1))
         backButton.tap()
+        XCTAssertEqual(app.tables.cells.count, 1)
+        
+        //deletion
+        app.tables.cells.firstMatch.swipeLeft(velocity: .default)
+        let deleteButton = app.buttons["Delete"]
+        deleteButton.tap()
+        XCTAssertEqual(app.tables.cells.count, 0)
     }
     
 }

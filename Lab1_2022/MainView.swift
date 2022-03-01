@@ -25,18 +25,23 @@ struct MainView: View {
                 if showSettings {
                     
                     SettingsView(colour: $colour, maxCharacters: $maxCharacters)
-                }
-                
-                else {
-                    
-                    
+                } else {
                     List($inventoryItems.entries) {
                         $inventoryItem in
                             NavigationLink(
                                 destination: DetailView(colour:colour, maxCharacters:maxCharacters, inventoryItem:$inventoryItem)
                         ) {
                             RowView(inventoryItem: inventoryItem)
-                        }
+                                
+                                    }.swipeActions(edge: .trailing) {
+                                        Button(role: .destructive) {
+                                            inventoryItems.entries.removeAll(where: { $0.id == inventoryItem.id})
+                                        } label: {
+                                            Label("Delete", systemImage: "trash")
+                                            
+                                        }
+                                        
+                                    }
                     }
                 }
             }
@@ -51,30 +56,38 @@ struct MainView: View {
                                     inventoryItems.entries.insert(item, at: 0)
                                 }
                             }
-                    ) {
+                        ) {
                                 Image(systemName: "plus")
-                            }
+                        }
                             .accessibilityIdentifier("PlusButton")
                     }
                 }
                 ToolbarItem(placement: .bottomBar){ Button(
                         action: { showSettings.toggle()},
-                label: { Image( systemName: showSettings ? "house" : "gear")
+                        label: { Image( systemName: showSettings ? "house" : "gear")
                 
-            }
+                        }
                         
-                    )
-                                    .accessibilityIdentifier("NavigationButton")
+                )
+                .accessibilityIdentifier("NavigationButton")
                  
-                }}.navigationViewStyle(StackNavigationViewStyle())
+                }
+                
+                }.navigationViewStyle(StackNavigationViewStyle())
         
+        }
     }
-    }
+    
+    
+    
+    
+        
+    
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(["iPad (9th generation)", "iPod touch (7th generation)"], id: \.self) { deviceName in
             MainView()
-                .previewDevice(PreviewDevice(rawValue: deviceName)).environmentObject(InventoryItems())
+                .previewDevice(PreviewDevice(rawValue: deviceName)).environmentObject(InventoryItems(previewMode: true))
         }
     }
 }
